@@ -1,0 +1,8 @@
+[
+  {
+    "directory": "process-large-files",
+    "name": "Process Large Files",
+    "description": "Process large files efficiently using Node.js streams.",
+    "tags": ["file-processing", "csv", "postgres", "streams"]
+  }
+]

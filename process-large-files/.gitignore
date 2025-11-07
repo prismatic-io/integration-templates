@@ -1,0 +1,6 @@
+# Ignore test files
+*.csv
+*.zip
+
+# Ignore prism file
+.spectral/prism.json
