@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Install script dependencies
+      - name: Validate manifest.json against schema
         run: npx ajv-cli validate -s manifest-schema.json -d manifest.json
 
   build-integrations:
