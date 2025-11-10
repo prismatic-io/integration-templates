@@ -1,0 +1,56 @@
+name: Validate manifest and build integrations
+
+on: push
+
+jobs:
+  validate-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "24"
+
+      - name: Install script dependencies
+        run: npx ajv-cli validate -s manifest-schema.json -d manifest.json
+
+  build-integrations:
+    runs-on: ubuntu-latest
+    needs: validate-manifest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Verify critical files exist
+        run: |
+          for integration in $(jq -r '.[].directory' ./manifest.json); do
+            if [ ! -d "$integration" ]; then
+              echo "Directory ${integration} does not exist"
+              exit 1
+            fi
+            if [ ! -f "$integration/assets/icon.png" ]; then
+              echo "icon.png not found in ${integration}/assets"
+              exit 1
+            fi
+            if [ ! -f "$integration/README.md" ]; then
+              echo "README.md not found in ${integration}/"
+              exit 1
+            fi
+          done
+
+      - name: Build integrations
+        run: |
+          for integration in $(jq -r '.[].directory' ./manifest.json); do
+            echo ""
+            echo ""
+            echo "==================================="
+            echo " Building ${integration}"
+            echo "==================================="
+            cd ${integration}
+            npm install
+            npm run build
+            cd -
+          done
