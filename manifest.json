@@ -4,5 +4,11 @@
     "name": "Process Large Files",
     "description": "Process large files efficiently using Node.js streams.",
     "tags": ["file-processing", "csv", "postgres", "streams"]
+  },
+  {
+    "directory": "salesforce",
+    "name": "Salesforce",
+    "description": "Create a field mapping between Salesforce objects and your system and leverage Salesforce workflows to sync data bidirectionally.",
+    "tags": ["salesforce", "crm", "data-sync", "webhooks"]
   }
 ]
