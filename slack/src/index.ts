@@ -8,10 +8,10 @@ export { configPages } from "./configPages";
 export { componentRegistry } from "./componentRegistry";
 
 export default integration({
-  name: "Salesforce",
-  description: "Sync data between Salesforce and Acme",
+  name: "Slack",
+  description: "Send todo items to Slack on a schedule",
   iconPath: "icon.png",
-  category: "CRM",
+  category: "Communication",
   documentation,
   flows,
   configPages,
