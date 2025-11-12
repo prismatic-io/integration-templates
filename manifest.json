@@ -6,6 +6,12 @@
     "tags": ["file-processing", "csv", "postgres", "streams"]
   },
   {
+    "directory": "shared-endpoint-example",
+    "name": "Shared Endpoint Example",
+    "description": "An example integration demonstrating the use of shared webhook endpoints.",
+    "tags": ["webhooks", "shared-endpoints"]
+  },
+  {
     "directory": "salesforce",
     "name": "Salesforce",
     "description": "Create a field mapping between Salesforce objects and your system and leverage Salesforce workflows to sync data bidirectionally.",
