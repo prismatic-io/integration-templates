@@ -10,5 +10,11 @@
     "name": "Salesforce",
     "description": "Create a field mapping between Salesforce objects and your system and leverage Salesforce workflows to sync data bidirectionally.",
     "tags": ["salesforce", "crm", "data-sync", "webhooks"]
+  },
+  {
+    "directory": "slack",
+    "name": "Slack",
+    "description": "Send messages to Slack channels based on data from external systems, with dynamic channel selection and scheduling.",
+    "tags": ["slack", "notifications", "webhooks", "scheduling"]
   }
 ]
