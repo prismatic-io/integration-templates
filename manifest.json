@@ -1,5 +1,11 @@
 [
   {
+    "directory": "generic-mcp-example",
+    "name": "Generic MCP Example",
+    "description": "An example integration demonstrating how to create a generic (MCP) tool that can be used by AI agents to search for people in an external CRM system.",
+    "tags": ["mcp", "ai", "crm"]
+  },
+  {
     "directory": "process-large-files",
     "name": "Process Large Files",
     "description": "Process large files efficiently using Node.js streams.",
