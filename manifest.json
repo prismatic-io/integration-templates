@@ -3,13 +3,13 @@
     "directory": "generic-mcp-example",
     "name": "Generic MCP Example",
     "description": "An example integration demonstrating how to create a generic (MCP) tool that can be used by AI agents to search for people in an external CRM system.",
-    "tags": ["mcp", "ai", "crm"]
+    "tags": ["mcp", "ai"]
   },
   {
     "directory": "process-large-files",
     "name": "Process Large Files",
     "description": "Process large files efficiently using Node.js streams.",
-    "tags": ["file-processing", "csv", "postgres", "streams"]
+    "tags": ["large-file-processing", "streams"]
   },
   {
     "directory": "shared-endpoint-example",
@@ -21,12 +21,18 @@
     "directory": "salesforce",
     "name": "Salesforce",
     "description": "Create a field mapping between Salesforce objects and your system and leverage Salesforce workflows to sync data bidirectionally.",
-    "tags": ["salesforce", "crm", "data-sync", "webhooks"]
+    "tags": ["salesforce", "webhooks"]
+  },
+  {
+    "directory": "salesforce-mcp",
+    "name": "Salesforce MCP Example",
+    "description": "An example integration demonstrating how to create a Salesforce-specific (MCP) tool that can be used by AI agents to search for contacts in Salesforce.",
+    "tags": ["mcp", "ai", "salesforce"]
   },
   {
     "directory": "slack",
     "name": "Slack",
     "description": "Send messages to Slack channels based on data from external systems, with dynamic channel selection and scheduling.",
-    "tags": ["slack", "notifications", "webhooks", "scheduling"]
+    "tags": ["slack", "webhooks"]
   }
 ]
