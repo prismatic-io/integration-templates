@@ -1,6 +1,6 @@
 # Integration Templates
 
-[![Validate manifest and build integrations](https://github.com/prismatic-io/integration-templates/actions/workflows/manifest.yml/badge.svg)](https://github.com/prismatic-io/integration-templates/actions/workflows/manifest.yml)
+[![Validate manifest and build integrations](https://github.com/prismatic-io/integration-templates/actions/workflows/validate.yml/badge.svg)](https://github.com/prismatic-io/integration-templates/actions/workflows/validate.yml)
 
 This repository contains integration templates for use with the [Prismatic](https://prismatic.io/) embedded iPaaS.
 These templates provide a starting point for building [code-native integrations](https://prismatic.io/docs/integrations/code-native/) using Prismatic's TypeScript SDK.
