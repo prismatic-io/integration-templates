@@ -13,10 +13,10 @@ interface Post {
   created_at: Date;
 }
 
-export const listItems = flow({
-  name: "List Items",
-  stableKey: "73350d9a-578a-40e6-9e14-1ed508e2149d",
-  description: "Fetch items from an API",
+export const listenForNewPosts = flow({
+  name: "New posts",
+  stableKey: "new-posts",
+  description: "Fetch new posts from the selected PostgreSQL table.",
   triggerType: "polling",
   schedule: { value: "* * * * *" },
   onTrigger: async (context, payload, params) => {
@@ -83,4 +83,4 @@ export const listItems = flow({
   },
 });
 
-export default [listItems];
+export default [listenForNewPosts];
