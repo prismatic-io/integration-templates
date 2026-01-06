@@ -6,6 +6,12 @@
     "tags": ["mcp", "ai"]
   },
   {
+    "directory": "postgres-polling-trigger",
+    "name": "PostgreSQL Polling Trigger",
+    "description": "Monitor a PostgreSQL table for new records using cursor-based polling with state management and dynamic table selection.",
+    "tags": ["postgres", "polling", "trigger", "database"]
+  },
+  {
     "directory": "process-large-files",
     "name": "Process Large Files",
     "description": "Process large files efficiently using Node.js streams.",
