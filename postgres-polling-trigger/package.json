@@ -16,7 +16,7 @@
     ]
   },
   "dependencies": {
-    "@prismatic-io/spectral": "file:../../spectral/packages/spectral/prismatic-io-spectral-10.12.2-rc.0.tgz",
+    "@prismatic-io/spectral": "10.13.0",
     "pg": "^8.16.3"
   },
   "devDependencies": {
