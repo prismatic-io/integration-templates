@@ -16,13 +16,13 @@
     ]
   },
   "dependencies": {
-    "@prismatic-io/spectral": "10.13.0",
-    "pg": "^8.16.3"
+    "@prismatic-io/spectral": "10.15.0",
+    "pg": "^8.17.2"
   },
   "devDependencies": {
     "@prismatic-io/eslint-config-spectral": "2.1.0",
     "@types/jest": "29.5.14",
-    "@types/pg": "^8.15.6",
+    "@types/pg": "^8.16.0",
     "copy-webpack-plugin": "13.0.0",
     "dotenv": "^17.2.2",
     "dotenv-webpack": "^8.1.1",

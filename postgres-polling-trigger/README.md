@@ -6,6 +6,9 @@ This integration demonstrates how to build a polling trigger that monitors a Pos
 
 This integration polls a PostgreSQL table every minute and processes new records that have been created since the last poll. It uses cursor-based polling with the `created_at` timestamp to efficiently track which records have already been processed.
 
+Additionally, the integration automatically creates a metadata table (`acme_post_metadata`) during deployment to track supplementary information like the number of likes each post has received.
+This is to demonstrate how to perform setup operations when an instance is deployed.
+
 The integration is configurable through a multi-step configuration wizard that allows customers to:
 
 1. Configure their PostgreSQL database connection
@@ -58,6 +61,12 @@ On the first poll (when no polling state exists), the integration:
 5. Will begin processing new records on subsequent polls
 
 This prevents the integration from processing all historical records on first activation and ensures it only processes records created after activation.
+
+### Automatic schema management on deployment
+
+The integration uses the `onInstanceDeploy` lifecycle hook to automatically create required database tables when an instance is deployed. Specifically, it creates an `acme_post_metadata` table.
+
+This approach ensures that the database schema is properly initialized without requiring manual database setup by the customer.
 
 ## Integration structure
 
