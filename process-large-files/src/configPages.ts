@@ -106,12 +106,13 @@ export const configPages = {
         dataSourceType: "picklist",
         perform: async (context) => {
           const client = createEc2Client(
-            context.configVars["S3 Connection"] as Connection
+            context.configVars["S3 Connection"] as Connection,
           );
           const command = new DescribeRegionsCommand({});
           const response = await client.send(command);
           const menuOptions = (response.Regions || [])
             .map((region) => region.RegionName)
+            .filter((val) => typeof val === "string")
             .filter(Boolean)
             .sort();
           return { result: menuOptions };
@@ -127,12 +128,13 @@ export const configPages = {
         perform: async (context) => {
           const s3Client = createS3Client(
             context.configVars["S3 Connection"] as Connection,
-            `${context.configVars["AWS Region"]}`
+            `${context.configVars["AWS Region"]}`,
           );
           const listBucketsCommand = new ListBucketsCommand({});
           const response = await s3Client.send(listBucketsCommand);
           const bucketNames = (response.Buckets || [])
             .map((bucket) => bucket.Name)
+            .filter((val) => typeof val === "string")
             .filter(Boolean)
             .sort();
           return { result: bucketNames };
