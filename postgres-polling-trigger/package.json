@@ -16,7 +16,7 @@
     ]
   },
   "dependencies": {
-    "@prismatic-io/spectral": "10.15.0",
+    "@prismatic-io/spectral": "10.16.3",
     "pg": "^8.17.2"
   },
   "devDependencies": {

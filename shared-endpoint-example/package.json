@@ -16,7 +16,7 @@
     ]
   },
   "dependencies": {
-    "@prismatic-io/spectral": "10.11.2"
+    "@prismatic-io/spectral": "10.16.3"
   },
   "devDependencies": {
     "@prismatic-io/eslint-config-spectral": "2.1.0",
