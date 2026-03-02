@@ -16,7 +16,7 @@
     ]
   },
   "dependencies": {
-    "@prismatic-io/spectral": "10.11.2",
+    "@prismatic-io/spectral": "10.16.3",
     "fast-xml-parser": "^5.3.1"
   },
   "devDependencies": {

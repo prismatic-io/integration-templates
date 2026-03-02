@@ -18,7 +18,7 @@
   "dependencies": {
     "@aws-sdk/client-ec2": "^3.925.0",
     "@aws-sdk/client-s3": "^3.925.0",
-    "@prismatic-io/spectral": "10.11.1",
+    "@prismatic-io/spectral": "10.16.3",
     "pg": "^8.16.3",
     "pg-copy-streams": "^7.0.0",
     "unzip-stream": "^0.3.4"
