@@ -30,7 +30,7 @@
     "@types/pg-copy-streams": "^1.2.5",
     "@types/unzip-stream": "^0.3.4",
     "archiver": "^7.0.1",
-    "copy-webpack-plugin": "13.0.0",
+    "copy-webpack-plugin": "14.0.0",
     "dotenv": "^17.2.2",
     "dotenv-webpack": "^8.1.1",
     "eslint": "^8.57.1",
@@ -38,7 +38,7 @@
     "ts-jest": "29.3.2",
     "ts-loader": "9.5.2",
     "typescript": "5.8.3",
-    "webpack": "5.102.1",
+    "webpack": "5.105.3",
     "webpack-cli": "6.0.1"
   }
 }
