@@ -16,8 +16,8 @@
     ]
   },
   "dependencies": {
-    "@prismatic-io/spectral": "10.18.4",
-    "pg": "^8.20.0"
+    "@prismatic-io/spectral": "^10.18.8",
+    "pg": "^8.21.0"
   },
   "devDependencies": {
     "@prismatic-io/eslint-config-spectral": "2.2.0",
@@ -31,7 +31,7 @@
     "ts-jest": "29.3.2",
     "ts-loader": "9.5.7",
     "typescript": "5.9.3",
-    "webpack": "5.106.2",
-    "webpack-cli": "7.0.2"
+    "webpack": "5.107.2",
+    "webpack-cli": "7.0.3"
   }
 }
