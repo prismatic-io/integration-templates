@@ -36,6 +36,18 @@
     "tags": ["mcp", "ai", "salesforce"]
   },
   {
+    "directory": "salesforce-initial-data-sync",
+    "name": "Salesforce Initial Data Sync",
+    "description": "Sync a large Salesforce data set into a PostgreSQL database in batches when an instance is deployed, then process new records in real time via webhook.",
+    "tags": ["salesforce", "postgres", "batch", "webhooks", "initial-data-sync"]
+  },
+  {
+    "directory": "simple-initial-data-sync",
+    "name": "Simple Initial Data Sync",
+    "description": "Backfill a large data set from a paginated API in batches when an instance is deployed, then process individual records in real time via webhook, using the batchFlowTrigger pattern.",
+    "tags": ["batch", "webhooks", "initial-data-sync", "pagination"]
+  },
+  {
     "directory": "slack",
     "name": "Slack",
     "description": "Send messages to Slack channels based on data from external systems, with dynamic channel selection and scheduling.",
