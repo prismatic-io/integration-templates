@@ -17,9 +17,7 @@ const PostArray = z.array(Post);
  * In this example, `startId` represents the numeric ID of the first post in the next batch to fetch,
  * and every post has a unique numeric ID that increments by 1.
  */
-interface PostCursor extends Record<string, unknown> {
-  startId: number;
-}
+type PostCursor = { startId: number };
 
 export const importPosts = flow({
   name: "Import Posts",
