@@ -130,7 +130,7 @@ export const importSalesforceLeads = flow({
   // Webhook lifecycle handlers create and tear down the Salesforce resources
   // that drive the real-time `onTrigger` above. On deploy we create an outbound
   // message + record-triggered flow in Salesforce that POST new leads to this
-  // flow's webhook URL; on delete we remove them. This is the code-native
+  // flow's webhook URL; on delete we remove them. This is the code-first
   // equivalent of the custom component trigger's create/delete lifecycle
   // handlers (onInstanceDeployFlowFunction / onInstanceDeleteFlowFunction).
   webhookLifecycleHandlers: {

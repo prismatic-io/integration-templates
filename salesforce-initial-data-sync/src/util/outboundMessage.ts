@@ -5,7 +5,7 @@ import type { SaveResult } from "jsforce/lib/api/metadata/schema";
 import type { FlowMetadata } from "./types";
 
 /**
- * This module replicates, in code-native form, the Salesforce custom component
+ * This module replicates, in code-first form, the Salesforce custom component
  * trigger that subscribes to record changes via an outbound message:
  * https://github.com/prismatic-io/components/blob/main/components/salesforce/src/triggers/flowOutboundMessageTrigger.ts
  *
