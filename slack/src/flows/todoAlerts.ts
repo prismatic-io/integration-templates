@@ -28,13 +28,22 @@ export const todoAlertsFlow = flow({
     const slackClient = createSlackClient(configVars["Slack Connection"]);
     const acmeClient = createAcmeClient(configVars["Acme Connection"]);
 
+    // Group logs into sections so they're easier to follow in the Prismatic app.
+    // Data passed to `sectionEnd` is attached to the section for debugging.
+    logger.section("Fetch TODO items");
     // Make an HTTP request to the Acme API using the config variable
     const { data: todoItems } = await acmeClient.get<TodoItem[]>("/todo");
+    logger.info(`Fetched ${todoItems.length} TODO items from Acme`);
+    logger.sectionEnd({ label: "Fetch TODO items", data: { todoItems } });
 
+    logger.section("Send Slack messages");
+    const skippedItemIds: number[] = [];
+    const sentItemIds: number[] = [];
     // Loop over the todo items
     for (const item of todoItems) {
       if (item.completed) {
         logger.info(`Skipping completed item ${item.id}`);
+        skippedItemIds.push(item.id);
       } else {
         // Send a message to the Slack channel for each incomplete item
         logger.info(`Sending message for item ${item.id}`);
@@ -46,8 +55,13 @@ export const todoAlertsFlow = flow({
         } catch (e) {
           throw new Error(`Failed to send message for item ${item.id}: ${e}`);
         }
+        sentItemIds.push(item.id);
       }
     }
+    logger.sectionEnd({
+      label: "Send Slack messages",
+      data: { sentItemIds, skippedItemIds },
+    });
 
     // Asynchronously-invoked flows should simply return null
     return { data: null };

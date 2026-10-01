@@ -40,6 +40,14 @@ export const processZipFile = flow({
 
     let processingError: Error | undefined;
 
+    // Track the files found in the zip so they can be attached to the log section
+    const processedFiles: string[] = [];
+
+    // Group logs related to processing the zip file into a section. CSV files
+    // are processed concurrently, so a single section is used rather than one
+    // per file (sections cannot be nested or interleaved).
+    context.logger.section("Process zip file");
+
     // When debug mode is enabled, log memory usage at key points
     context.debug.memoryUsage(context, "Starting zip file processing");
 
@@ -86,6 +94,7 @@ export const processZipFile = flow({
                     rejectEntry(error);
                   })
                   .on("finish", () => {
+                    processedFiles.push(entry.path);
                     resolveEntry();
                   });
 
@@ -108,6 +117,15 @@ export const processZipFile = flow({
         `Error processing zip file: ${processingError.message}`
       );
     } finally {
+      context.logger.sectionEnd({
+        label: "Process zip file",
+        data: {
+          file: FILE_TO_FETCH,
+          processedFiles,
+          error: processingError?.message,
+        },
+      });
+
       // Always close the PostgreSQL client connection
       try {
         await postgresClient.end();
