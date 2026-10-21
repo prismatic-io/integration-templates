@@ -13,7 +13,7 @@ import { createSlackClient } from "../slackClient";
 interface TodoItem {
   id: number;
   completed: boolean;
-  task: string;
+  title: string;
 }
 
 export const todoAlertsFlow = flow({
@@ -32,7 +32,9 @@ export const todoAlertsFlow = flow({
     // Data passed to `sectionEnd` is attached to the section for debugging.
     logger.section("Fetch TODO items");
     // Make an HTTP request to the Acme API using the config variable
-    const { data: todoItems } = await acmeClient.get<TodoItem[]>("/todo");
+    const { data: todoItems } = await acmeClient.get<TodoItem[]>("/todos", {
+      params: { _limit: 10 },
+    });
     logger.info(`Fetched ${todoItems.length} TODO items from Acme`);
     logger.sectionEnd({ label: "Fetch TODO items", data: { todoItems } });
 
@@ -50,7 +52,7 @@ export const todoAlertsFlow = flow({
         try {
           await slackClient.post("chat.postMessage", {
             channel: configVars["Select Slack Channel"],
-            text: `Incomplete task: ${item.task}`,
+            text: `Incomplete task: ${item.title}`,
           });
         } catch (e) {
           throw new Error(`Failed to send message for item ${item.id}: ${e}`);

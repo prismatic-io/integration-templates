@@ -96,7 +96,7 @@ The [todoAlerts.ts](src/flows/todoAlerts.ts) flow demonstrates a common integrat
 
 1. Triggers on a user-configured schedule (set during the configuration wizard)
 2. Authenticates with the Acme API using connection config variables
-3. Fetches a list of TODO items from the `/todo` endpoint
+3. Fetches a list of TODO items from the `/todos` endpoint
 4. Iterates through each TODO item
 5. For incomplete items, posts a message to the configured Slack channel
 6. Logs progress and errors for monitoring
@@ -143,7 +143,7 @@ You can test this integration in Prismatic.
 
 1. **Slack Workspace**: You'll need access to a Slack workspace where you can create channels and post messages
 2. **Customer-Activated Connection**: Create a customer-activated Slack connection in Prismatic with the stable key `slack-connection`. See [Customer-Activated Connections documentation](https://prismatic.io/docs/integrations/connections/integration-agnostic-connections/customer-activated/) for setup instructions
-3. **Acme API**: This example uses [my-json-server.typicode.com/prismatic-io/placeholder-data](https://my-json-server.typicode.com/prismatic-io/placeholder-data) as a test endpoint, but you can replace it with your own API
+3. **Acme API**: This example uses [JSONPlaceholder](https://jsonplaceholder.typicode.com) as a test endpoint, but you can replace it with your own API
 
 ### Running tests in Prismatic
 

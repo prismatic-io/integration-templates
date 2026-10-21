@@ -38,8 +38,7 @@ export const configPages = {
           baseUrl: input({
             label: "Base URL",
             type: "string",
-            default:
-              "https://my-json-server.typicode.com/prismatic-io/placeholder-data",
+            default: "https://jsonplaceholder.typicode.com",
             required: true,
           }),
           apiKey: input({
@@ -64,7 +63,7 @@ export const configPages = {
         dataSourceType: "picklist",
         perform: async (context) => {
           const client = createSlackClient(
-            context.configVars["Slack Connection"] as Connection
+            context.configVars["Slack Connection"] as Connection,
           );
           let channels: Channel[] = [];
           let cursor = null;
@@ -84,7 +83,7 @@ export const configPages = {
               });
             if (!response.data.ok) {
               throw new Error(
-                `Error when fetching data from Slack: ${response.data}`
+                `Error when fetching data from Slack: ${response.data}`,
               );
             }
             channels = [...channels, ...response.data.channels];
