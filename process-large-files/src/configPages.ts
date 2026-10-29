@@ -1,43 +1,17 @@
-import { DescribeRegionsCommand } from "@aws-sdk/client-ec2";
-import { ListBucketsCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
+import awsS3 from "@prismatic-io/components-aws-s3";
 import {
   configPage,
   configVar,
-  Connection,
   connectionConfigVar,
-  dataSourceConfigVar,
 } from "@prismatic-io/spectral";
-import { createEc2Client, createS3Client } from "./awsClient";
 
 export const configPages = {
   Connections: configPage({
     elements: {
-      "S3 Connection": connectionConfigVar({
+      // The Amazon S3 component's access key connection, from its npm package.
+      // Its accessKeyId and secretAccessKey fields are what src/awsClient.ts reads.
+      "S3 Connection": awsS3.connections.apiKeySecret({
         stableKey: "s3-connection",
-        dataType: "connection",
-        icons: {
-          avatarPath: "s3.png",
-        },
-        inputs: {
-          accessKeyId: {
-            label: "Access Key ID",
-            placeholder: "Access Key ID",
-            type: "string",
-            required: true,
-            shown: true,
-            comments: "An AWS IAM Access Key ID",
-            example: "AKIAIOSFODNN7EXAMPLE",
-          },
-          secretAccessKey: {
-            label: "Secret Access Key",
-            placeholder: "Secret Access Key",
-            type: "password",
-            required: true,
-            shown: true,
-            comments: "An AWS IAM Secret Access Key",
-            example: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
-          },
-        },
       }),
       "PostgreSQL Connection": connectionConfigVar({
         stableKey: "postgres-connection",
@@ -101,44 +75,17 @@ export const configPages = {
   }),
   "AWS Region": configPage({
     elements: {
-      "AWS Region": dataSourceConfigVar({
+      "AWS Region": awsS3.dataSources.selectRegion({
         stableKey: "aws-region",
-        dataSourceType: "picklist",
-        perform: async (context) => {
-          const client = createEc2Client(
-            context.configVars["S3 Connection"] as Connection,
-          );
-          const command = new DescribeRegionsCommand({});
-          const response = await client.send(command);
-          const menuOptions = (response.Regions || [])
-            .map((region) => region.RegionName)
-            .filter((val) => typeof val === "string")
-            .filter(Boolean)
-            .sort();
-          return { result: menuOptions };
-        },
+        values: {},
       }),
     },
   }),
   "AWS S3 Bucket": configPage({
     elements: {
-      "S3 Bucket Name": dataSourceConfigVar({
+      "S3 Bucket Name": awsS3.dataSources.selectBucket({
         stableKey: "s3-bucket",
-        dataSourceType: "picklist",
-        perform: async (context) => {
-          const s3Client = createS3Client(
-            context.configVars["S3 Connection"] as Connection,
-            `${context.configVars["AWS Region"]}`,
-          );
-          const listBucketsCommand = new ListBucketsCommand({});
-          const response = await s3Client.send(listBucketsCommand);
-          const bucketNames = (response.Buckets || [])
-            .map((bucket) => bucket.Name)
-            .filter((val) => typeof val === "string")
-            .filter(Boolean)
-            .sort();
-          return { result: bucketNames };
-        },
+        values: { accessKey: { configVar: "S3 Connection" } },
       }),
     },
   }),
