@@ -101,9 +101,20 @@ export const configPages = {
   }),
   "AWS S3 Bucket": configPage({
     elements: {
-      "S3 Bucket Name": awsS3.dataSources.selectBucket({
+      // The Amazon S3 package lists the account's buckets; sorted by name here, as
+      // the picker always has been.
+      "S3 Bucket Name": dataSourceConfigVar({
         stableKey: "s3-bucket",
-        values: { accessKey: { configVar: "S3 Connection" } },
+        dataSourceType: "picklist",
+        perform: async (context) => {
+          const { result } = await awsS3.dataSources.selectBucket.perform({
+            accessKey: context.configVars["S3 Connection"] as Connection,
+          });
+          const bucketNames = result
+            .map((bucket) => (typeof bucket === "string" ? bucket : bucket.key))
+            .sort();
+          return { result: bucketNames };
+        },
       }),
     },
   }),
