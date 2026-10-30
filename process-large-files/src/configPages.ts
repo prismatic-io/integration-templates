@@ -1,9 +1,13 @@
+import { DescribeRegionsCommand } from "@aws-sdk/client-ec2";
 import awsS3 from "@prismatic-io/components-aws-s3";
 import {
   configPage,
   configVar,
+  Connection,
   connectionConfigVar,
+  dataSourceConfigVar,
 } from "@prismatic-io/spectral";
+import { createEc2Client } from "./awsClient";
 
 export const configPages = {
   Connections: configPage({
@@ -75,9 +79,23 @@ export const configPages = {
   }),
   "AWS Region": configPage({
     elements: {
-      "AWS Region": awsS3.dataSources.selectRegion({
+      // The regions enabled for the connection's AWS account, rather than every region.
+      "AWS Region": dataSourceConfigVar({
         stableKey: "aws-region",
-        values: {},
+        dataSourceType: "picklist",
+        perform: async (context) => {
+          const client = createEc2Client(
+            context.configVars["S3 Connection"] as Connection,
+          );
+          const command = new DescribeRegionsCommand({});
+          const response = await client.send(command);
+          const menuOptions = (response.Regions || [])
+            .map((region) => region.RegionName)
+            .filter((val) => typeof val === "string")
+            .filter(Boolean)
+            .sort();
+          return { result: menuOptions };
+        },
       }),
     },
   }),
