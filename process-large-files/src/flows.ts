@@ -19,7 +19,7 @@ export const processZipFile = flow({
     // Initialize AWS S3 client
     const s3Client = createS3Client(
       context.configVars["S3 Connection"],
-      `${context.configVars["AWS Region"]}`
+      context.configVars["AWS Region"]
     );
 
     // Initialize PostgreSQL client
@@ -29,7 +29,7 @@ export const processZipFile = flow({
 
     // Fetch the zip file from S3
     const command = new GetObjectCommand({
-      Bucket: `${context.configVars["S3 Bucket Name"]}`,
+      Bucket: context.configVars["S3 Bucket Name"],
       Key: FILE_TO_FETCH,
     });
     const s3Result = await s3Client.send(command);
