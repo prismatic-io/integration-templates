@@ -16,7 +16,8 @@
     ]
   },
   "dependencies": {
-    "@prismatic-io/spectral": "^10.28.0"
+    "@prismatic-io/components-dropbox": "^0.1.1",
+    "@prismatic-io/spectral": "^10.38.3"
   },
   "devDependencies": {
     "@prismatic-io/eslint-config-spectral": "2.2.0",
